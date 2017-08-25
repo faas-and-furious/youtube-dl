@@ -11,7 +11,10 @@ $ docker push alexellis2/faas-youtubedl
 Now deploy:
 
 ```
-$ faas-cli -action deploy -image alexellis2/faas-youtubedl -name youtubedl -fprocess="sh ./entry.sh"
+$ faas-cli -action deploy \
+  -image alexellis2/faas-youtubedl \
+  -name youtubedl \
+  -fprocess="sh ./entry.sh"
 ```
 
 Try it out:
