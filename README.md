@@ -21,5 +21,8 @@ Try it out:
 
 ```
 $ curl localhost:8080/function/youtubedl \
-  -d "https://www.youtube.com/watch?v=rVlhMGQgDkY" > Atlas_The_Next_Generation.mov
+  -d "https://www.youtube.com/watch?v=nG2rNBFzkGE" > cat_jump.mov
+
+$ curl localhost:8080/function/youtubedl \
+ -d "https://www.youtube.com/watch?v=BJDJFMlvV_8" > cat_purr.mov
 ```
