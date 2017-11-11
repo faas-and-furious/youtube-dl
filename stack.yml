@@ -7,5 +7,5 @@ functions:
   youtubedl:
     lang: Dockerfile
     handler: ./
-    image: alexellis2/faas-youtubedl:0.2
+    image: alexellis2/faas-youtubedl:0.3
 

@@ -5,10 +5,12 @@ RUN apk add --no-cache curl \
     /usr/bin/fwatchdog \
     && chmod +x /usr/bin/fwatchdog
 
-FROM crosbymichael/youtubedl
+FROM alpine:3.6
 ENTRYPOINT []
 
 COPY --from=watchdog /usr/bin/fwatchdog /usr/bin/fwatchdog
+
+RUN apk add --no-cache youtube-dl bash ca-certificates
 
 COPY entry.sh   .
 RUN chmod +x entry.sh
