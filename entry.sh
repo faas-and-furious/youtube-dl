@@ -1,9 +1,12 @@
 #!/bin/sh
 
+url=""
+if [ ! -z "$1" ] ; then
+  url=$1
+else
+  url=$(cat /dev/stdin)
+fi
 
-while read line
-do
-  echo "$line"
-done < "${1:-/dev/stdin}"
+trimmedURL=$(echo "$url" | tr -d '\n')
 
-youtube-dl $line --no-warnings --quiet -o -
+youtube-dl $trimmedURL --no-warnings --quiet -o -

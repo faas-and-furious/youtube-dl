@@ -2,19 +2,14 @@
 YouTube download via a function
 
 ```
-$ git clone https://github.com/faas-and-furious/youtube-dl
-$ cd youtube-dl
-$ docker build -t alexellis2/faas-youtubedl .
-$ docker push alexellis2/faas-youtubedl
+$ git clone https://github.com/faas-and-furious/youtube-dl \
+  cd youtube-dl
 ```
 
 Now deploy:
 
 ```
-$ faas-cli -action deploy \
-  -image alexellis2/faas-youtubedl \
-  -name youtubedl \
-  -fprocess="sh ./entry.sh"
+$ faas-cli deploy -f stack.yml
 ```
 
 Try it out:
