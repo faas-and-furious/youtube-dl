@@ -1,0 +1,9 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  youtubedl:
+    lang: Dockerfile
+    handler: ./youtube-dl
+    image: alexellis2/faas-youtubedl
