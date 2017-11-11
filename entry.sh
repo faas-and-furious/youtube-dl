@@ -1,9 +1,9 @@
 #!/bin/sh
 
+if [[ -z "$1" ]]; then
+  LINE="`cat /dev/stdin`"
+else
+  LINE="$1"
+fi
 
-while read line
-do
-  echo "$line"
-done < "${1:-/dev/stdin}"
-
-youtube-dl $line --no-warnings --quiet -o -
+youtube-dl $LINE --no-warnings --quiet -o -
