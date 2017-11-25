@@ -15,7 +15,14 @@ $ faas-cli deploy
 The YAML file is optional:
 
 ```
-$ faas-cli deploy -f stack.yml
+$ faas-cli deploy -f \
+https://raw.githubusercontent.com/faas-and-furious/youtube-dl/master/stack.yml
+```
+
+Or from the local file:
+
+```
+$ faas-cli deploy
 ```
 
 Try it out:
