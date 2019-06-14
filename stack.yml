@@ -1,11 +1,14 @@
 provider:
-  name: faas
-  provider: faas
-  gateway: http://localhost:8080
+  name: openfaas
+  gateway: http://127.0.0.1:8080
 
 functions:
   youtubedl:
     lang: Dockerfile
     handler: ./
-    image: alexellis2/faas-youtubedl:0.3
-
+    image: rgee0/faas-youtubedl:0.4
+    environment:
+      read_timeout: 300s
+      write_timeout: 300s
+    labels: 
+      com.openfaas.ui.ext: "mp4"
