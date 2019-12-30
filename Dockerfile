@@ -1,15 +1,25 @@
-FROM openfaas/classic-watchdog:0.13.4 as watchdog
+FROM openfaas/classic-watchdog:0.18.10 as watchdog
+FROM alpine:3.11
 
-FROM alpine:3.8
-ENTRYPOINT []
+LABEL maintainer="https://github.com/hijak"
 
 COPY --from=watchdog /fwatchdog /usr/bin/fwatchdog
 
-RUN apk add --no-cache py-pip bash ca-certificates
-RUN pip install --upgrade youtube-dl
+RUN apk add --update --no-cache py-pip bash ca-certificates supervisor
 
-COPY entry.sh   .
-RUN chmod +x entry.sh
-ENV fprocess="./entry.sh"
+COPY ./requirements.txt /code/requirements.txt
+WORKDIR /code
+RUN pip install pur
+RUN pur -r requirements.txt
+RUN pip install -r requirements.txt
 
-CMD ["fwatchdog"]
+COPY app.conf /etc/supervisor/conf.d/app.conf
+
+#Runs every Sunday
+RUN echo "0 0 * * 0 /usr/bin/pip install --upgrade youtube-dl" >> /etc/crontabs/root
+
+COPY entry.sh /entry.sh
+RUN chmod +x /entry.sh
+ENV fprocess="/entry.sh"
+
+ENTRYPOINT ["/usr/bin/supervisord","-c", "/etc/supervisor/conf.d/app.conf"]
